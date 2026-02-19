@@ -71,21 +71,24 @@
 --         },
 --     },
 -- })
-
-local lspconfig = require("lspconfig")
-
 -- C / C++
-lspconfig.clangd.setup({
+vim.lsp.config("clangd", {
   cmd = { "clangd" },
   filetypes = { "c", "cpp", "objc", "objcpp" },
 })
 
+vim.lsp.enable("clangd")
+
 -- Rust
-lspconfig.rust_analyzer.setup({})
+vim.lsp.config("rust_analyzer", {})
+vim.lsp.enable("rust_analyzer")
 
 -- Python
-lspconfig.pyright.setup({})
+vim.lsp.config("pyright", {})
+vim.lsp.enable("pyright")
 
 -- Nix
-lspconfig.nil_ls.setup({})
+vim.lsp.config("nil_ls", {})
+vim.lsp.enable("nil_ls")
+
 
