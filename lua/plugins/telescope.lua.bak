@@ -1,0 +1,49 @@
+return {
+    {
+        "nvim-telescope/telescope.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function()
+            local telescope = require("telescope")
+            telescope.setup({
+                defaults = {
+                    layout_strategy = "horizontal",
+                    sorting_strategy = "ascending",
+                    prompt_prefix = "🔍 ",
+                    color_devicons = true,
+                    vimgrep_arguments = {
+                        "rg",
+                        "--color=never",
+                        "--no-heading",
+                        "--with-filename",
+                        "--line-number",
+                        "--column",
+                        "--smart-case",
+                        "-g",
+                        "!.git/*",
+                    },
+                },
+            })
+
+            local builtin = require("telescope.builtin")
+
+            -- File Pickers (prefix <leader>f)
+            vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find Files" })
+            vim.keymap.set("n", "<leader>fc", function()
+                builtin.find_files({ cwd = "~/.config/nvim/" })
+            end, { desc = "Find Config Files" })
+            vim.keymap.set("n", "<leader>fs", builtin.live_grep, { desc = "Grep Word" })
+            vim.keymap.set({ "n", "x" }, "<leader>fws", builtin.grep_string, { desc = "Search Word/Selection" })
+            vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Search Keymaps" })
+            vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Help Pages" })
+
+            -- Git integration
+            vim.keymap.set("n", "<leader>fgb", builtin.git_branches, { desc = "Switch Git Branch" })
+            vim.keymap.set("n", "<leader>fgs", builtin.git_status, { desc = "Git Status" })
+            vim.keymap.set("n", "<leader>fgc", builtin.git_commits, { desc = "Git Commits" })
+
+            vim.keymap.set("n", "<leader>fb", function()
+                require("telescope").extensions.file_browser.file_browser()
+            end, { desc = "File Browser" })
+        end,
+    },
+}
