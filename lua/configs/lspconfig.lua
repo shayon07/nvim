@@ -1,94 +1,94 @@
--- local on_attach = require("nvchad.configs.lspconfig").on_attach
--- local on_init = require("nvchad.configs.lspconfig").on_init
--- local capabilities = require("nvchad.configs.lspconfig").capabilities
---
--- -- Global defaults (applies to all servers)
--- -- vim.lsp.config("*", {
--- --     on_attach = on_attach,
--- --     on_init = on_init,
--- --     capabilities = capabilities,
--- --     root_markers = { ".git" },
--- -- })
---
--- -- clangd config
--- vim.lsp.config("clangd", {
---     cmd = { "clangd" },
---     filetypes = { "c", "cpp" },
---     root_markers = { ".clangd", "compile_commands.json", ".git" },
---     on_attach = function(client, bufnr)
---         client.server_capabilities.documentFormattingProvider = false
---         client.server_capabilities.documentRangeFormattingProvider = false
---         on_attach(client, bufnr)
---     end,
--- })
---
--- -- lua_ls config
--- vim.lsp.config("lua_ls", {
---     filetypes = { "lua" },
---     settings = {
---         Lua = {
---             diagnostics = {
---                 enable = false, -- Disable all diagnostics
---                 -- globals = { "vim" }, -- Or whitelist globals
---             },
---             workspace = {
---                 library = {
---                     vim.fn.expand("$VIMRUNTIME/lua"),
---                     vim.fn.expand("$VIMRUNTIME/lua/vim/lsp"),
---                     vim.fn.stdpath("data") .. "/lazy/ui/nvchad_types",
---                     vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy",
---                     "${3rd}/love2d/library",
---                 },
---                 maxPreload = 100000,
---                 preloadFileSize = 10000,
---             },
---         },
---     },
--- })
---
--- -- -- Optional: pyright (if you want)
--- -- vim.lsp.config("pyright", {
--- --     filetypes = { "python" },
--- --     root_markers = { ".git" },
--- -- -- })
--- --
--- vim.lsp.config("pylsp", {
---     cmd = { "pylsp" }, -- Ensure pylsp is in your PATH or specify full path
---     filetypes = { "python" },
---     root_markers = { ".git", "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt" },
+local on_attach = require("nvchad.configs.lspconfig").on_attach
+local on_init = require("nvchad.configs.lspconfig").on_init
+local capabilities = require("nvchad.configs.lspconfig").capabilities
+
+-- Global defaults (applies to all servers)
+-- vim.lsp.config("*", {
 --     on_attach = on_attach,
 --     on_init = on_init,
 --     capabilities = capabilities,
---     settings = {
---         pylsp = {
---             plugins = {
---                 jedi_completion = { enabled = true }, -- enable completion plugin
---                 mccabe = { enabled = false }, -- disable unused plugins if preferred
---                 pycodestyle = { enabled = false },
---                 yapf = { enabled = false },
---                 black = { enabled = true }, -- enable black formatter if used
---             },
---         },
---     },
+--     root_markers = { ".git" },
 -- })
--- C / C++
+
+-- clangd config
 vim.lsp.config("clangd", {
-  cmd = { "clangd" },
-  filetypes = { "c", "cpp", "objc", "objcpp" },
+    cmd = { "clangd" },
+    filetypes = { "c", "cpp" },
+    root_markers = { ".clangd", "compile_commands.json", ".git" },
+    on_attach = function(client, bufnr)
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+        on_attach(client, bufnr)
+    end,
 })
 
-vim.lsp.enable("clangd")
+-- lua_ls config
+vim.lsp.config("lua_ls", {
+    filetypes = { "lua" },
+    settings = {
+        Lua = {
+            diagnostics = {
+                enable = false, -- Disable all diagnostics
+                -- globals = { "vim" }, -- Or whitelist globals
+            },
+            workspace = {
+                library = {
+                    vim.fn.expand("$VIMRUNTIME/lua"),
+                    vim.fn.expand("$VIMRUNTIME/lua/vim/lsp"),
+                    vim.fn.stdpath("data") .. "/lazy/ui/nvchad_types",
+                    vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy",
+                    "${3rd}/love2d/library",
+                },
+                maxPreload = 100000,
+                preloadFileSize = 10000,
+            },
+        },
+    },
+})
 
--- Rust
-vim.lsp.config("rust_analyzer", {})
-vim.lsp.enable("rust_analyzer")
+-- -- Optional: pyright (if you want)
+-- vim.lsp.config("pyright", {
+--     filetypes = { "python" },
+--     root_markers = { ".git" },
+-- -- })
+--
+vim.lsp.config("pylsp", {
+    cmd = { "pylsp" }, -- Ensure pylsp is in your PATH or specify full path
+    filetypes = { "python" },
+    root_markers = { ".git", "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt" },
+    on_attach = on_attach,
+    on_init = on_init,
+    capabilities = capabilities,
+    settings = {
+        pylsp = {
+            plugins = {
+                jedi_completion = { enabled = true }, -- enable completion plugin
+                mccabe = { enabled = false }, -- disable unused plugins if preferred
+                pycodestyle = { enabled = false },
+                yapf = { enabled = false },
+                black = { enabled = true }, -- enable black formatter if used
+            },
+        },
+    },
+})
+-- -- C / C++
+-- vim.lsp.config("clangd", {
+--   cmd = { "clangd" },
+--   filetypes = { "c", "cpp", "objc", "objcpp" },
+-- })
 
--- Python
-vim.lsp.config("pyright", {})
-vim.lsp.enable("pyright")
+-- vim.lsp.enable("clangd")
 
--- Nix
-vim.lsp.config("nil_ls", {})
-vim.lsp.enable("nil_ls")
+-- -- Rust
+-- vim.lsp.config("rust_analyzer", {})
+-- vim.lsp.enable("rust_analyzer")
+
+-- -- Python
+-- vim.lsp.config("pyright", {})
+-- vim.lsp.enable("pyright")
+
+-- -- Nix
+-- vim.lsp.config("nil_ls", {})
+-- vim.lsp.enable("nil_ls")
 
 
