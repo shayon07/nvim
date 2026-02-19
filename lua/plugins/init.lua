@@ -17,14 +17,14 @@ return {
         end,
     },
 
-    {
-        "williamboman/mason-lspconfig.nvim",
-        event = "VeryLazy",
-        dependencies = { "nvim-lspconfig" },
-        config = function()
-            require("configs.mason-lspconfig")
-        end,
-    },
+    -- {
+    --     "williamboman/mason-lspconfig.nvim",
+    --     event = "VeryLazy",
+    --     dependencies = { "nvim-lspconfig" },
+    --     config = function()
+    --         require("configs.mason-lspconfig")
+    --     end,
+    -- },
 
     {
         "mfussenegger/nvim-lint",
@@ -34,14 +34,14 @@ return {
         end,
     },
 
-    {
-        "rshkarin/mason-nvim-lint",
-        event = "VeryLazy",
-        dependencies = { "nvim-lint" },
-        config = function()
-            require("configs.mason-lint")
-        end,
-    },
+    -- {
+    --     "rshkarin/mason-nvim-lint",
+    --     event = "VeryLazy",
+    --     dependencies = { "nvim-lint" },
+    --     config = function()
+    --         require("configs.mason-lint")
+    --     end,
+    -- },
 
     {
         "stevearc/conform.nvim",
@@ -51,14 +51,14 @@ return {
         end,
     },
 
-    {
-        "zapling/mason-conform.nvim",
-        event = "VeryLazy",
-        dependencies = { "conform.nvim" },
-        config = function()
-            require("configs.mason-conform")
-        end,
-    },
+    -- {
+    --     "zapling/mason-conform.nvim",
+    --     event = "VeryLazy",
+    --     dependencies = { "conform.nvim" },
+    --     config = function()
+    --         require("configs.mason-conform")
+    --     end,
+    -- },
 
     {
         "nvim-telescope/telescope.nvim",
