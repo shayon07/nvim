@@ -71,3 +71,21 @@
 --         },
 --     },
 -- })
+
+local lspconfig = require("lspconfig")
+
+-- C / C++
+lspconfig.clangd.setup({
+  cmd = { "clangd" },
+  filetypes = { "c", "cpp", "objc", "objcpp" },
+})
+
+-- Rust
+lspconfig.rust_analyzer.setup({})
+
+-- Python
+lspconfig.pyright.setup({})
+
+-- Nix
+lspconfig.nil_ls.setup({})
+
