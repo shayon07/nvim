@@ -106,13 +106,6 @@ vim.lsp.config("nil_ls", {
   cmd = { "nil" },
   filetypes = { "nix" },
   on_attach = on_attach,
-  settings = {
-    nil = {
-      formatting = {
-        command = { "nixpkgs-fmt" }
-      }
-    }
-  }
 })
 vim.lsp.enable("nil_ls")
 
