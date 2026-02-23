@@ -3,9 +3,7 @@
 -- Helper for common on_attach
 local function on_attach(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
-  if client.server_capabilities.document_formatting then
-    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-  end
+  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
   -- Set shiftwidth and tabstop to 4 spaces for ALL filetypes
   vim.api.nvim_buf_set_option(bufnr, "shiftwidth", 4)
@@ -27,9 +25,9 @@ local function on_attach(client, bufnr)
         bufnr = bufnr,
         formatting_options = {
           tabSize = 4,
-          insertSpaces = true,
+          insertSpaces = true
         },
-        async = false,
+        async = false
       })
     end, opts)
   end
@@ -42,13 +40,13 @@ vim.lsp.config("clangd", {
     "--background-index",
     "--clang-tidy",
     "--completion-style=detailed",
-    "--header-insertion=iwyu",
+    "--header-insertion=iwyu"
   },
   filetypes = { "c", "cpp", "objc", "objcpp" },
   on_attach = on_attach,
   init_options = {
-    clangdFileStatus = true,
-  },
+    clangdFileStatus = true
+  }
 })
 vim.lsp.enable("clangd")
 
@@ -60,11 +58,11 @@ vim.lsp.config("rust_analyzer", {
     ["rust-analyzer"] = {
       cargo = { allFeatures = true },
       checkOnSave = {
-        command = "clippy",
+        command = "clippy"
       },
-      diagnostics = { enable = true },
-    },
-  },
+      diagnostics = { enable = true }
+    }
+  }
 })
 vim.lsp.enable("rust_analyzer")
 
@@ -80,10 +78,10 @@ vim.lsp.config("pylsp", {
         pyflakes = { enabled = true },
         mccabe = { enabled = true, threshold = 15 },
         yapf = { enabled = true },
-        rope_completion = { enabled = true },
-      },
-    },
-  },
+        rope_completion = { enabled = true }
+      }
+    }
+  }
 })
 vim.lsp.enable("pylsp")
 
@@ -91,7 +89,7 @@ vim.lsp.enable("pylsp")
 vim.lsp.config("bashls", {
   cmd = { "bash-language-server", "start" },
   filetypes = { "sh", "bash" },
-  on_attach = on_attach,
+  on_attach = on_attach
 })
 vim.lsp.enable("bashls")
 
@@ -99,7 +97,7 @@ vim.lsp.enable("bashls")
 vim.lsp.config("dockerls", {
   cmd = { "docker-langserver", "--stdio" },
   filetypes = { "dockerfile" },
-  on_attach = on_attach,
+  on_attach = on_attach
 })
 vim.lsp.enable("dockerls")
 
@@ -111,10 +109,10 @@ vim.lsp.config("nil_ls", {
   settings = {
     nil = {
       formatting = {
-        command = { "nixpkgs-fmt" },
-      },
-    },
-  },
+        command = { "nixpkgs-fmt" }
+      }
+    }
+  }
 })
 vim.lsp.enable("nil_ls")
 
@@ -130,12 +128,12 @@ vim.api.nvim_create_autocmd("BufWritePre", {
           bufnr = bufnr,
           formatting_options = {
             tabSize = 4,
-            insertSpaces = true,
+            insertSpaces = true
           },
-          async = false,
+          async = false
         })
         break
       end
     end
-  end,
+  end
 })
